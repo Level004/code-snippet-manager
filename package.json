@@ -1,0 +1,15 @@
+{
+  "name": "code-snippet-manager",
+  "productName": "Code Snippet Manager",
+  "version": "1.0.0",
+  "description": "an app to manage your code snippets",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Guilliano van Dinther",
+  "license": "ISC",
+  "dependencies": {
+    "electron": "^29.0.0"
+  }
+}
