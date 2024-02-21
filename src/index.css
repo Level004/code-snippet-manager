@@ -7,6 +7,7 @@ body {
     Arial, sans-serif;
   margin: auto;
   max-width: 38rem;
+  background-color: #424599 !important;
 }
 
 #main-container {
@@ -57,7 +58,7 @@ body {
 .snippet-code {
     height: 75%;
     background-color: gray;
-    overflow-y: auto;
+    overflow: hidden;
 }
 
 .snippet-code > p {
@@ -66,11 +67,46 @@ body {
 
 .snippet-name {
     height: 25%;
+    width: 100%;
 }
+
+.snippet-name > p {
+    padding-left: 10px;
+}
+
+.menu-button {
+    cursor: pointer;
+}
+  .context-menu {
+    display: none;
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    min-width: 120px;
+    transition: transform 0.2s ease-out; /* Add a transition for smooth animation */
+    flex-direction: row; /* Set the flex direction to row */
+  }
+
+  .context-menu.show {
+    transform: translateY(-100%); /* Adjust the transformation to move up */
+  }
+
+  .context-menu > div {
+    padding: 8px 16px; /* Add padding for better spacing */
+    cursor: pointer;
+    transition: background-color 0.2s ease-out; /* Add transition for hover effect */
+  }
+
+  .context-menu > div:hover {
+    background-color: #f0f0f0; /* Change background color on hover */
+  }
+
 
 ::-webkit-scrollbar {
     background-color: transparent !important;
-    width: 16px !important;
+    width: 9px !important;
 }
 
 ::-webkit-scrollbar-track {
@@ -80,7 +116,7 @@ body {
 ::-webkit-scrollbar-thumb {
     background-color: var(--main-color);
     border-radius: 16px;
-    border: 4px solid  var(--main-color);
+    border: 1px solid  var(--main-color);
 }
 
 ::-webkit-scrollbar-button {

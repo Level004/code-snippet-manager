@@ -6,6 +6,7 @@
     <title>Code Snippet Manager</title>
     <link rel="stylesheet" href="index.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrap-override.css">
     <script defer src="main.js"></script>
 </head>
 
@@ -13,106 +14,80 @@
     <div id="main-container">
         <div id="side-bar"></div>
         <div id="content-container">
-            <div id="big-preview-container">
+            <div id="big-preview-container" class="rounded">
                 <h1></h1>
             </div>
             <div id="snippets-container">
                 <div class="snippet-block rounded">
                     <div class="snippet-code">
-                        <p>code</p>
+                        <p>lol</p>
                     </div>
-                    <div class="snippet-name d-flex align-items-center">
-                        <p class="col-6">console log snippet</p>
+                    <div class="snippet-name d-flex align-items-center" oncontextmenu="showContextMenu(event)">
+                        <p class="flex-grow-1">console log snippet</p>
+                        <div class="meatball-button">
+                            <svg class="menu-button" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" onclick="showContextMenu(event)"
+                                style="cursor: pointer;">
+                                <circle cx="12" cy="12" r="2"></circle>
+                                <circle cx="12" cy="5" r="2"></circle>
+                                <circle cx="12" cy="19" r="2"></circle>
+                            </svg>
+                            <div id="contextMenu" class="context-menu">
+                                <div onclick="editOption()">Edit</div>
+                                <div onclick="copyOption()">Copy</div>
+                                <div onclick="deleteOption()" style="color: red;">Delete</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="snippet-block">
+                <div class="snippet-block rounded">
                     <div class="snippet-code">
-                        <p>console.log('hi');</p>
+                        <p>lol 2</p>
                     </div>
-                    <div class="snippet-name">
-                        <p>console log snippet</p>
+                    <div class="snippet-name d-flex align-items-center" oncontextmenu="showContextMenu(event)">
+                        <p class="flex-grow-1">console log snippet</p>
+                        <div class="meatball-button">
+                            <svg class="menu-button" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" onclick="showContextMenu(event)"
+                                style="cursor: pointer;">
+                                <circle cx="12" cy="12" r="2"></circle>
+                                <circle cx="12" cy="5" r="2"></circle>
+                                <circle cx="12" cy="19" r="2"></circle>
+                            </svg>
+                            <div id="contextMenu" class="context-menu">
+                                <div onclick="editOption()">Edit</div>
+                                <div onclick="copyOption()">Copy</div>
+                                <div onclick="deleteOption()" style="color: red;">Delete</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="snippet-block">
+                <div class="snippet-block rounded">
                     <div class="snippet-code">
-                        <p>console.log('hi');</p>
+                        <p>lol 3</p>
                     </div>
-                    <div class="snippet-name">
-                        <p>console log snippet</p>
-                    </div>
-                </div>
-                <div class="snippet-block">
-                    <div class="snippet-code">
-                        <p>console.log('hi');</p>
-                    </div>
-                    <div class="snippet-name">
-                        <p>console log snippet</p>
-                    </div>
-                </div>
-                <div class="snippet-block">
-                    <div class="snippet-code">
-                        <p>console.log('hi');</p>
-                    </div>
-                    <div class="snippet-name">
-                        <p>console log snippet</p>
-                    </div>
-                </div>
-                <div class="snippet-block">
-                    <div class="snippet-code">
-                        <p>console.log('hi');</p>
-                    </div>
-                    <div class="snippet-name">
-                        <p>console log snippet</p>
+                    <div class="snippet-name d-flex align-items-center" oncontextmenu="showContextMenu(event)">
+                        <p class="flex-grow-1">console log snippet</p>
+                        <div class="meatball-button">
+                            <svg class="menu-button" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" onclick="showContextMenu(event)"
+                                style="cursor: pointer;">
+                                <circle cx="12" cy="12" r="2"></circle>
+                                <circle cx="12" cy="5" r="2"></circle>
+                                <circle cx="12" cy="19" r="2"></circle>
+                            </svg>
+                            <div id="contextMenu" class="context-menu">
+                                <div onclick="editOption()">Edit</div>
+                                <div onclick="copyOption()">Copy</div>
+                                <div onclick="deleteOption()" style="color: red;">Delete</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="snippet-block">
-                    <div class="snippet-code">
-                        <p>console.log('hi');</p>
-                    </div>
-                    <div class="snippet-name">
-                        <p>console log snippet</p>
-                    </div>
-                </div>
-                <div class="snippet-block">
-                    <div class="snippet-code">
-                        <p>console.log('hi');</p>
-                    </div>
-                    <div class="snippet-name">
-                        <p>console log snippet</p>
-                    </div>
-                </div>
-                <div class="snippet-block">
-                    <div class="snippet-code">
-                        <p>console.log('hi');</p>
-                    </div>
-                    <div class="snippet-name">
-                        <p>console log snippet</p>
-                    </div>
-                </div>
-                <div class="snippet-block">
-                    <div class="snippet-code">
-                        <p>console.log('hi');</p>
-                    </div>
-                    <div class="snippet-name">
-                        <p>console log snippet</p>
-                    </div>
-                </div>
-                <div class="snippet-block">
-                    <div class="snippet-code">
-                        <p>console.log('hi');</p>
-                    </div>
-                    <div class="snippet-name">
-                        <p>console log snippet</p>
-                    </div>
-                </div>
-                <div class="snippet-block">
-                    <div class="snippet-code">
-                        <p>console.log('hi');</p>
-                    </div>
-                    <div class="snippet-name">
-                        <p>console log snippet</p>
-                    </div>
-                </div>
+
             </div>
         </div>
     </div>

@@ -1,3 +1,7 @@
+
+
+// adds event listeners
+
 document.addEventListener("DOMContentLoaded", function() {
     // Get the big preview container
     const bigPreviewContainer = document.getElementById("big-preview-container");
@@ -47,3 +51,40 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
+
+
+//context menu logic
+
+
+function showContextMenu(event) {
+    event.preventDefault();
+    const contextMenu = document.getElementById("contextMenu");
+    contextMenu.style.display = "block";
+    contextMenu.style.left = event.clientX + "px";
+    contextMenu.style.top = event.clientY + "px";
+    document.addEventListener("click", hideContextMenu);
+}
+
+function hideContextMenu() {
+    const contextMenu = document.getElementById("contextMenu");
+    contextMenu.style.display = "none";
+    document.removeEventListener("click", hideContextMenu);
+}
+
+function editOption() {
+    console.log("Edit option selected");
+
+    hideContextMenu();
+}
+
+function copyOption() {
+    console.log("Copy option selected");
+    // Add your copy logic here
+    hideContextMenu();
+}
+
+function deleteOption() {
+    console.log("Delete option selected");
+    // Add your delete logic here
+    hideContextMenu();
+}
