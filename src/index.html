@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="index.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="bootstrap-override.css">
-    <script defer src="main.js"></script>
+    <!-- <script defer src="main.js"></script> -->
+    <script defer src="renderer.js"></script>
 </head>
 
 <body>
@@ -20,7 +21,7 @@
             <div id="snippets-container">
                 <div class="snippet-block rounded">
                     <div class="snippet-code">
-                        <p>lol</p>
+                        <p>lol3434343</p>
                     </div>
                     <div class="snippet-name d-flex align-items-center" oncontextmenu="showContextMenu(event)">
                         <p class="flex-grow-1">console log snippet</p>
@@ -35,7 +36,7 @@
                             </svg>
                             <div id="contextMenu" class="context-menu">
                                 <div onclick="editOption()">Edit</div>
-                                <div onclick="copyOption()">Copy</div>
+                                <div onclick="copyOption(event)">Copy</div>
                                 <div onclick="deleteOption()" style="color: red;">Delete</div>
                             </div>
                         </div>
@@ -58,7 +59,7 @@
                             </svg>
                             <div id="contextMenu" class="context-menu">
                                 <div onclick="editOption()">Edit</div>
-                                <div onclick="copyOption()">Copy</div>
+                                <div onclick="copyOption(event)">Copy</div>
                                 <div onclick="deleteOption()" style="color: red;">Delete</div>
                             </div>
                         </div>
@@ -81,7 +82,7 @@
                             </svg>
                             <div id="contextMenu" class="context-menu">
                                 <div onclick="editOption()">Edit</div>
-                                <div onclick="copyOption()">Copy</div>
+                                <div onclick="copyOption(event)">Copy</div>
                                 <div onclick="deleteOption()" style="color: red;">Delete</div>
                             </div>
                         </div>

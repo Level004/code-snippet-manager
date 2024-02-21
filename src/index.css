@@ -34,12 +34,11 @@ body {
 }
 
 #snippets-container {
-    /* flex: 1; */
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    overflow-y: auto; /* Set to 'auto' or 'hidden' to make content inside scrollable */
-    height: calc(100% - 25vh); /* Take the remaining height */
+    overflow-y: auto; 
+    height: calc(100% - 25vh);
     max-height: 75vh;
     background-color: #424599;
 }
@@ -52,7 +51,7 @@ body {
     background-color: yellow;
     margin: 10px;
     box-sizing: border-box;
-    overflow: hidden; /* Prevents container from growing when content overflows */
+    overflow: hidden; 
 }
 
 .snippet-code {
@@ -77,7 +76,8 @@ body {
 .menu-button {
     cursor: pointer;
 }
-  .context-menu {
+
+.context-menu {
     display: none;
     position: absolute;
     background-color: white;
@@ -85,24 +85,25 @@ body {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     z-index: 1000;
     min-width: 120px;
-    transition: transform 0.2s ease-out; /* Add a transition for smooth animation */
-    flex-direction: row; /* Set the flex direction to row */
-  }
+    opacity: 0; 
+    transition: transform 0.2s ease-out, opacity 0.2s ease-out; /* Add transitions */
+    flex-direction: row; 
+}
 
-  .context-menu.show {
+.context-menu.show {
     transform: translateY(-100%); /* Adjust the transformation to move up */
-  }
+    opacity: 1; 
+}
 
-  .context-menu > div {
-    padding: 8px 16px; /* Add padding for better spacing */
+.context-menu > div {
+    padding: 8px 16px; 
     cursor: pointer;
-    transition: background-color 0.2s ease-out; /* Add transition for hover effect */
-  }
+    transition: background-color 0.2s ease-out; 
+}
 
-  .context-menu > div:hover {
-    background-color: #f0f0f0; /* Change background color on hover */
-  }
-
+.context-menu > div:hover {
+    background-color: #f0f0f0; 
+}
 
 ::-webkit-scrollbar {
     background-color: transparent !important;
