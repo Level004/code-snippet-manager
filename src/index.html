@@ -7,89 +7,37 @@
     <link rel="stylesheet" href="index.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="bootstrap-override.css">
-    <!-- <script defer src="main.js"></script> -->
     <script defer src="renderer.js"></script>
 </head>
 
 <body>
     <div id="main-container">
-        <div id="side-bar"></div>
+        <div id="side-bar">
+            <div id="groups-container">
+                <div class="side-group-name rounded d-flex justify-content-center">
+                    <p>words 1</p>
+                </div>
+            </div>
+            <div id="addSnippetButton" onclick="showAddSnippetContextMenu(event)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    style="cursor: pointer;">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="8" x2="12" y2="16"></line>
+                    <line x1="8" y1="12" x2="16" y2="12"></line>
+                </svg>
+            </div>
+
+            <div id="addSnippetContextMenu" class="context-menu">
+                <div onclick="createNewSnippetForm()">New Snippet</div>
+                <div onclick="createNewSnippetGroupForm()">New Snippet Group</div>
+            </div>
+        </div>
         <div id="content-container">
             <div id="big-preview-container" class="rounded">
                 <h1></h1>
             </div>
-            <div id="snippets-container">
-                <div class="snippet-block rounded">
-                    <div class="snippet-code">
-                        <p>lol3434343</p>
-                    </div>
-                    <div class="snippet-name d-flex align-items-center" oncontextmenu="showContextMenu(event)">
-                        <p class="flex-grow-1">console log snippet</p>
-                        <div class="meatball-button">
-                            <svg class="menu-button" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round" onclick="showContextMenu(event)"
-                                style="cursor: pointer;">
-                                <circle cx="12" cy="12" r="2"></circle>
-                                <circle cx="12" cy="5" r="2"></circle>
-                                <circle cx="12" cy="19" r="2"></circle>
-                            </svg>
-                            <div id="contextMenu" class="context-menu">
-                                <div onclick="editOption()">Edit</div>
-                                <div onclick="copyOption(event)">Copy</div>
-                                <div onclick="deleteOption()" style="color: red;">Delete</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="snippet-block rounded">
-                    <div class="snippet-code">
-                        <p>lol 2</p>
-                    </div>
-                    <div class="snippet-name d-flex align-items-center" oncontextmenu="showContextMenu(event)">
-                        <p class="flex-grow-1">console log snippet</p>
-                        <div class="meatball-button">
-                            <svg class="menu-button" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round" onclick="showContextMenu(event)"
-                                style="cursor: pointer;">
-                                <circle cx="12" cy="12" r="2"></circle>
-                                <circle cx="12" cy="5" r="2"></circle>
-                                <circle cx="12" cy="19" r="2"></circle>
-                            </svg>
-                            <div id="contextMenu" class="context-menu">
-                                <div onclick="editOption()">Edit</div>
-                                <div onclick="copyOption(event)">Copy</div>
-                                <div onclick="deleteOption()" style="color: red;">Delete</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="snippet-block rounded">
-                    <div class="snippet-code">
-                        <p>lol 3</p>
-                    </div>
-                    <div class="snippet-name d-flex align-items-center" oncontextmenu="showContextMenu(event)">
-                        <p class="flex-grow-1">console log snippet</p>
-                        <div class="meatball-button">
-                            <svg class="menu-button" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round" onclick="showContextMenu(event)"
-                                style="cursor: pointer;">
-                                <circle cx="12" cy="12" r="2"></circle>
-                                <circle cx="12" cy="5" r="2"></circle>
-                                <circle cx="12" cy="19" r="2"></circle>
-                            </svg>
-                            <div id="contextMenu" class="context-menu">
-                                <div onclick="editOption()">Edit</div>
-                                <div onclick="copyOption(event)">Copy</div>
-                                <div onclick="deleteOption()" style="color: red;">Delete</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
+            <div id="snippets-container"></div>
         </div>
     </div>
 </body>

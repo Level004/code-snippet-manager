@@ -1,5 +1,6 @@
 const { app, BrowserWindow, screen, ipcMain, clipboard } = require('electron');
 const path = require('path');
+const fs = require('fs');
 
 if (require('electron-squirrel-startup')) {
     app.quit();
@@ -15,8 +16,12 @@ const createWindow = () => {
         icon: path.join(__dirname, 'img/icon.ico'),
         webPreferences: {
             preload: path.join(__dirname, 'preload.js'),
+            contextIsolation: true, // Enable context isolation
+            nodeIntegration: true, // Enable Node.js integration
+            nodeIntegrationInWorker: true, // Enable Node.js integration in Web Workers
         },
     });
+
 
     mainWindow.loadFile(path.join(__dirname, 'index.html'));
 };

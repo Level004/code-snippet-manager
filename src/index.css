@@ -3,22 +3,102 @@
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
-    Arial, sans-serif;
-  margin: auto;
-  max-width: 38rem;
-  background-color: #424599 !important;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
+        Arial, sans-serif;
+    margin: auto;
+    max-width: 38rem;
+    background-color: #424599 !important;
 }
 
 #main-container {
     display: flex;
-    width: 100vw; 
+    width: 100vw;
 }
 
 #side-bar {
     width: 20vw;
     height: 100vh;
     background-color: var(--main-color);
+    position: relative;
+}
+
+#addSnippetButton {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    background-color: white;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.2s ease-out;
+}
+
+#addSnippetButton:hover {
+    background-color: #f0f0f0;
+}
+
+#addSnippetContextMenu {
+    display: none;
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    min-width: 120px;
+    transition: transform 0.2s ease-out;
+    flex-direction: column;
+}
+
+#addSnippetContextMenu.show {
+    transform: translateY(-100%);
+}
+
+#addSnippetContextMenu>div {
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-out;
+}
+
+#addSnippetContextMenu>div:hover {
+    background-color: #f0f0f0;
+}
+
+#newSnippetForm,
+#newSnippetGroupForm {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 20vw;
+}
+
+#snippetName,
+#snippetCode,
+#snippetGroupDropdown,
+#snippetGroupName {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
 }
 
 #content-container {
@@ -34,25 +114,24 @@ body {
 }
 
 #snippets-container {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(calc(33.33% - 20px), 1fr));
+    gap: 20px;
     justify-content: space-between;
-    overflow-y: auto; 
+    overflow-y: auto;
     height: calc(100% - 25vh);
     max-height: 75vh;
     background-color: #424599;
 }
 
 .snippet-block {
-    display: flex;
-    flex-direction: column;
     height: 250px;
-    width: calc(33.33% - 20px);
     background-color: yellow;
-    margin: 10px;
     box-sizing: border-box;
-    overflow: hidden; 
+    overflow: hidden;
+    margin: 5px 5px 5px 10px;
 }
+
 
 .snippet-code {
     height: 75%;
@@ -60,8 +139,8 @@ body {
     overflow: hidden;
 }
 
-.snippet-code > p {
-    padding: 16px; 
+.snippet-code>p {
+    padding: 16px;
 }
 
 .snippet-name {
@@ -69,13 +148,14 @@ body {
     width: 100%;
 }
 
-.snippet-name > p {
+.snippet-name>p {
     padding-left: 10px;
 }
 
 .menu-button {
     cursor: pointer;
 }
+
 
 .context-menu {
     display: none;
@@ -85,24 +165,30 @@ body {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     z-index: 1000;
     min-width: 120px;
-    opacity: 0; 
-    transition: transform 0.2s ease-out, opacity 0.2s ease-out; /* Add transitions */
-    flex-direction: row; 
+    opacity: 0;
+    transition: transform 0.2s ease-out, opacity 0.2s ease-out;
+    /* Add transitions */
+    flex-direction: row;
 }
 
 .context-menu.show {
-    transform: translateY(-100%); /* Adjust the transformation to move up */
-    opacity: 1; 
+    transform: translateY(-100%);
+    /* Adjust the transformation to move up */
+    opacity: 1;
 }
 
-.context-menu > div {
-    padding: 8px 16px; 
+.context-menu>div {
+    padding: 8px 16px;
     cursor: pointer;
-    transition: background-color 0.2s ease-out; 
+    transition: background-color 0.2s ease-out;
 }
 
-.context-menu > div:hover {
-    background-color: #f0f0f0; 
+.context-menu>div:hover {
+    background-color: #f0f0f0;
+}
+
+.side-group-name {
+    background-color: white;
 }
 
 ::-webkit-scrollbar {
@@ -117,9 +203,10 @@ body {
 ::-webkit-scrollbar-thumb {
     background-color: var(--main-color);
     border-radius: 16px;
-    border: 1px solid  var(--main-color);
+    border: 1px solid var(--main-color);
 }
 
-::-webkit-scrollbar-button {
+::-webkit-scrollbar-button,
+.snippet-group{
     display: none !important;
 }
