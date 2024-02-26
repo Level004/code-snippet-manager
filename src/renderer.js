@@ -181,8 +181,8 @@ function populateSnippetsContainer(callback) {
                 snippetName.classList.add("snippet-name", "d-flex", "align-items-center");
                 snippetName.setAttribute("oncontextmenu", "showContextMenu(event)");
                 snippetName.innerHTML = `
-                    <p class="snippet-group">${snippet.group}</p>
                     <p class="flex-grow-1">${snippet.name}</p>
+                    <p class="snippet-group">${snippet.group}</p>
                     <div class="meatball-button">
                         <svg class="menu-button" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -333,5 +333,6 @@ function deleteOption(event) {
     }
 
     location.reload();
+
 }
 
