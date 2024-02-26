@@ -16,7 +16,7 @@ const createWindow = () => {
         icon: path.join(__dirname, 'img/icon.ico'),
         webPreferences: {
             preload: path.join(__dirname, 'preload.js'),
-            contextIsolation: true, // Enable context isolation
+            contextIsolation: true, 
             nodeIntegration: true, // Enable Node.js integration
             nodeIntegrationInWorker: true, // Enable Node.js integration in Web Workers
         },

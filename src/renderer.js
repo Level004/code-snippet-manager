@@ -220,7 +220,7 @@ document.addEventListener("DOMContentLoaded", function() {
         snippetBlocks.forEach(function(snippetBlock) {
             snippetBlock.addEventListener("click", function() {
                 const snippetCodeContent = snippetBlock.querySelector(".snippet-code p").textContent;
-                const bigPreviewHeading = bigPreviewContainer.querySelector("h1");
+                const bigPreviewHeading = bigPreviewContainer.querySelector("p");
                 bigPreviewHeading.textContent = snippetCodeContent;
             });
 
@@ -228,7 +228,7 @@ document.addEventListener("DOMContentLoaded", function() {
             snippetCode.addEventListener("click", function(event) {
                 event.stopPropagation();
                 const snippetCodeContent = snippetCode.querySelector("p").textContent;
-                const bigPreviewHeading = bigPreviewContainer.querySelector("h1");
+                const bigPreviewHeading = bigPreviewContainer.querySelector("p");
                 bigPreviewHeading.textContent = snippetCodeContent;
 
                 electronAPI.clipboardWriteText(snippetCodeContent);
@@ -238,7 +238,7 @@ document.addEventListener("DOMContentLoaded", function() {
             snippetName.addEventListener("click", function(event) {
                 event.stopPropagation();
                 const snippetCodeContent = snippetBlock.querySelector(".snippet-code p").textContent;
-                const bigPreviewHeading = bigPreviewContainer.querySelector("h1");
+                const bigPreviewHeading = bigPreviewContainer.querySelector("p");
                 bigPreviewHeading.textContent = snippetCodeContent;
             });
 
@@ -296,7 +296,7 @@ function copyOption(event) {
     const snippetBlock = event.target.closest('.snippet-block');
 
     if (snippetBlock) {
-        const bigPreviewHeading = document.getElementById('big-preview-container').querySelector('h1');
+        const bigPreviewHeading = document.getElementById('big-preview-container').querySelector('p');
         const textToCopy = bigPreviewHeading.textContent || bigPreviewHeading.innerText;
 
         // Use the exposed API to copy to clipboard

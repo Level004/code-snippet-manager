@@ -19,7 +19,7 @@ body {
     overflow: hidden;
 }
 
-p, h1 {
+p {
     word-wrap: break-word;
 }
 
@@ -147,8 +147,9 @@ button:hover {
     overflow-y: hidden;
 }
 
-#big-preview-container > h1 {
+#big-preview-container > p {
     overflow-y: auto;
+    padding: 16px;
 }
 
 #snippets-container {
