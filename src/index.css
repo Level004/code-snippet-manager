@@ -144,12 +144,13 @@ button:hover {
     background-color: var(--honolulu-blue);
     width: 98%;
     margin: 1% 1% 1% 1%;
-    overflow-y: hidden;
+    overflow-y: auto;
 }
 
-#big-preview-container > p {
+#big-preview-container > pre {
     overflow-y: auto;
-    padding: 16px;
+    padding: 16px; 
+    color: white !important; 
 }
 
 #snippets-container {
@@ -181,6 +182,8 @@ button:hover {
     position: relative;
 }
 
+
+
 .snippet-code::after {
     position: absolute;
     bottom: 0;
@@ -193,8 +196,9 @@ button:hover {
     background-image: linear-gradient(transparent, rgb(2 62 139 / 85%));
 }
 
-.snippet-code>p {
+.snippet-code>pre {
     padding: 16px;
+    color: white !important;
 }
 
 .snippet-name {

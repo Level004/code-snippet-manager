@@ -51,6 +51,7 @@ function createNewSnippetGroupForm() {
     button.onclick = function() {
         addSnippetGroup();
         newSnippetGroupForm.parentNode.removeChild(newSnippetGroupForm);
+        location.reload();
     };
 
     newSnippetGroupForm.appendChild(input);
@@ -162,7 +163,7 @@ function populateSnippetsContainer(callback) {
 
     fs.readFile(jsonFilePath, 'utf8', (err, data) => {
         if (err) {
-            console.error('Eading JSON file:', err);
+            console.error('Reading JSON file:', err);
             return;
         }
 
@@ -175,7 +176,9 @@ function populateSnippetsContainer(callback) {
 
                 const snippetCode = document.createElement("div");
                 snippetCode.classList.add("snippet-code");
-                snippetCode.innerHTML = `<p>${snippet.code}</p>`;
+
+                // Replace newline characters with <br> tags and wrap in <pre>
+                snippetCode.innerHTML = `<pre>${snippet.code.replace(/\n/g, '<br>')}</pre>`;
 
                 const snippetName = document.createElement("div");
                 snippetName.classList.add("snippet-name", "d-flex", "align-items-center");
@@ -212,6 +215,46 @@ function populateSnippetsContainer(callback) {
     });
 }
 
+
+function populateGroupsContainer() {
+    const groupsContainer = document.getElementById("groups-container");
+
+    const jsonFilePath = path.join('snippetdata.json');
+
+
+    fs.readFile(jsonFilePath, 'utf8', (err, data) => {
+        if (err) {
+            console.error('Reading JSON file:', err);
+            return;
+        }
+
+        const jsonData = JSON.parse(data);
+        const groups = jsonData.snippetgroups.split(',');
+
+        if (groups.length === 0 || (groups.length === 1 && groups[0] === '')) {
+            console.warn('Groups is empty.');
+            return;
+        }
+
+        groups.forEach(group => {
+            const div = document.createElement('div');
+            div.classList.add('side-group-name', 'center-block', 'rounded', 'd-flex', 'justify-content-center');
+
+            const p = document.createElement('p');
+            p.textContent = group;
+
+            div.appendChild(p);
+
+            groupsContainer.appendChild(div);
+        });
+
+        //if (typeof callback === 'function') {
+        //  callback();
+        //}
+    });
+}
+
+
 document.addEventListener("DOMContentLoaded", function() {
     populateSnippetsContainer(function() {
         const bigPreviewContainer = document.getElementById("big-preview-container");
@@ -219,17 +262,17 @@ document.addEventListener("DOMContentLoaded", function() {
 
         snippetBlocks.forEach(function(snippetBlock) {
             snippetBlock.addEventListener("click", function() {
-                const snippetCodeContent = snippetBlock.querySelector(".snippet-code p").textContent;
-                const bigPreviewHeading = bigPreviewContainer.querySelector("p");
-                bigPreviewHeading.textContent = snippetCodeContent;
+                const snippetCodeContent = snippetBlock.querySelector(".snippet-code pre").innerHTML;
+                const bigPreviewHeading = bigPreviewContainer.querySelector("pre");
+                bigPreviewHeading.innerHTML = snippetCodeContent;
             });
 
             const snippetCode = snippetBlock.querySelector(".snippet-code");
             snippetCode.addEventListener("click", function(event) {
                 event.stopPropagation();
-                const snippetCodeContent = snippetCode.querySelector("p").textContent;
-                const bigPreviewHeading = bigPreviewContainer.querySelector("p");
-                bigPreviewHeading.textContent = snippetCodeContent;
+                const snippetCodeContent = snippetCode.querySelector("pre").innerHTML;
+                const bigPreviewHeading = bigPreviewContainer.querySelector("pre");
+                bigPreviewHeading.innerHTML = snippetCodeContent;
 
                 electronAPI.clipboardWriteText(snippetCodeContent);
             });
@@ -237,9 +280,9 @@ document.addEventListener("DOMContentLoaded", function() {
             const snippetName = snippetBlock.querySelector(".snippet-name");
             snippetName.addEventListener("click", function(event) {
                 event.stopPropagation();
-                const snippetCodeContent = snippetBlock.querySelector(".snippet-code p").textContent;
-                const bigPreviewHeading = bigPreviewContainer.querySelector("p");
-                bigPreviewHeading.textContent = snippetCodeContent;
+                const snippetCodeContent = snippetBlock.querySelector(".snippet-code pre").innerHTML;
+                const bigPreviewHeading = bigPreviewContainer.querySelector("pre");
+                bigPreviewHeading.innerHTML = snippetCodeContent;
             });
 
             snippetName.addEventListener("contextmenu", function(event) {
@@ -248,6 +291,8 @@ document.addEventListener("DOMContentLoaded", function() {
             });
         });
     });
+
+    populateGroupsContainer();
 });
 
 function showContextMenu(event) {
