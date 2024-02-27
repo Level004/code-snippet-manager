@@ -11,6 +11,11 @@
         "name": "python test",
         "code": "num = int(input(\"Enter a number: \"))\nif (num % 2) == 0:\n   print(\"{0} is Even\".format(num))\nelse:\n   print(\"{0} is Odd\".format(num))",
         "group": "python"
+      },
+      {
+        "name": "c++ test 2",
+        "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n\n  int year;\n  cout << \"Enter a year: \";\n  cin >> year;\n\n  // leap year if perfectly divisible by 400\n  if (year % 400 == 0) {\n    cout << year << \" is a leap year.\";\n  }\n  // not a leap year if divisible by 100\n  // but not divisible by 400\n  else if (year % 100 == 0) {\n    cout << year << \" is not a leap year.\";\n  }\n  // leap year if not divisible by 100\n  // but divisible by 4\n  else if (year % 4 == 0) {\n    cout << year << \" is a leap year.\";\n  }\n  // all other years are not leap years\n  else {\n    cout << year << \" is not a leap year.\";\n  }\n\n  return 0;\n}",
+        "group": "c++"
       }
     ]
   }

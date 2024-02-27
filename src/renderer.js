@@ -216,7 +216,7 @@ function populateSnippetsContainer(callback) {
 }
 
 
-function populateGroupsContainer() {
+function populateGroupsContainer(callback) {
     const groupsContainer = document.getElementById("groups-container");
 
     const jsonFilePath = path.join('snippetdata.json');
@@ -248,9 +248,9 @@ function populateGroupsContainer() {
             groupsContainer.appendChild(div);
         });
 
-        //if (typeof callback === 'function') {
-        //  callback();
-        //}
+        if (typeof callback === 'function') {
+            callback();
+        }
     });
 }
 
@@ -292,7 +292,30 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
-    populateGroupsContainer();
+    populateGroupsContainer(function() {
+        const sideGroupNames = document.querySelectorAll('.side-group-name');
+
+        sideGroupNames.forEach(group => {
+            group.addEventListener('click', function() {
+                const snippetBlocks = document.querySelectorAll('.snippet-block');
+                snippetBlocks.forEach(block => {
+                    block.classList.remove('d-none');
+                });
+
+                const clickedGroup = group.textContent.trim();
+
+                snippetBlocks.forEach(block => {
+                    const snippetGroup = block.querySelector('.snippet-group').textContent.trim();
+                    if (snippetGroup !== clickedGroup) {
+                        block.classList.add('d-none');
+                    }
+                });
+            });
+        });
+    }
+
+
+    );
 });
 
 function showContextMenu(event) {
@@ -378,6 +401,43 @@ function deleteOption(event) {
     }
 
     location.reload();
-
 }
+
+
+function toggleBigPreviewHeight() {
+    const bigPreviewContainer = document.getElementById('big-preview-container');
+    const expandButton = document.getElementById('expandButton');
+    
+    bigPreviewContainer.classList.toggle('expanded');
+    
+    const isExpanded = bigPreviewContainer.classList.contains('expanded');
+    
+    if (isExpanded) {
+        expandButton.querySelector('svg').innerHTML = `
+                <g transform="translate(0.000000,134.000000) scale(0.100000,-0.100000)" fill="#000000" stroke="none">
+                <path d="M866 1318 c-13 -19 -16 -57 -16 -218 0 -161 3 -199 16 -218 15 -22
+                19 -22 229 -22 l215 0 16 25 c15 23 15 27 0 50 -16 25 -18 25 -159 25 l-142 0
+                153 153 c155 155 173 182 140 215 -28 28 -55 10 -210 -145 l-158 -158 0 146
+                c0 99 -4 149 -12 157 -19 19 -55 14 -72 -10z"/>
+                <path d="M10 466 c-18 -22 -8 -59 20 -73 16 -8 70 -13 150 -13 l125 0 -153
+                -153 c-103 -103 -152 -159 -152 -174 0 -21 33 -53 54 -53 5 0 81 71 168 157
+                l158 157 0 -142 c0 -140 0 -142 25 -158 23 -15 27 -15 50 0 l25 16 0 206 c0
+                122 -4 213 -10 225 -10 18 -23 19 -229 19 -178 0 -221 -3 -231 -14z"/>
+                </g>`;
+    } else {
+        expandButton.querySelector('svg').innerHTML = `
+             <g transform="translate(0.000000,134.000000) scale(0.100000,-0.100000)" fill="#000000"
+                            stroke="none">
+                            <path d="M866 1318 c-20 -29 -20 -34 4 -58 18 -18 33 -20 157 -20 l137 0 -157
+-158 c-86 -87 -157 -164 -157 -170 0 -18 38 -52 57 -52 9 0 85 68 170 152
+l153 152 0 -131 c0 -113 3 -134 19 -154 16 -20 23 -22 47 -14 l29 10 3 219 c2
+153 -1 223 -9 232 -9 11 -56 14 -225 14 -209 0 -213 0 -228 -22z" />
+                            <path d="M22 474 c-22 -15 -22 -19 -22 -228 0 -151 3 -215 12 -224 9 -9 74
+-12 230 -12 208 0 218 1 228 20 15 28 3 59 -27 71 -13 5 -79 9 -146 9 l-121 0
+152 153 c84 85 152 161 152 170 0 19 -34 57 -52 57 -6 0 -83 -71 -170 -157
+l-158 -157 0 137 c0 124 -2 139 -20 157 -24 24 -29 24 -58 4z" />
+                        </g>`;
+    }
+}
+
 

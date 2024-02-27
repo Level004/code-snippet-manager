@@ -145,12 +145,23 @@ button:hover {
     width: 98%;
     margin: 1% 1% 1% 1%;
     overflow-y: auto;
+    transition: height 0.5s ease-in-out;
 }
 
 #big-preview-container > pre {
     overflow-y: auto;
     padding: 16px; 
     color: white !important; 
+}
+
+.expanded {
+    height: 100vh !important;
+}
+
+#expandButton {
+    position: fixed;
+    right: 25px;
+    top: 25px;
 }
 
 #snippets-container {
