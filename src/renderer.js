@@ -132,7 +132,7 @@ function addSnippetGroup() {
 
 function addSnippet() {
     const snippetName = document.getElementById("snippetName").value.trim();
-    const snippetCode = document.getElementById("snippetCode").value.trim();
+    const snippetCode = document.getElementById("snippetCode").value;
     const snippetGroup = document.getElementById("snippetGroupDropdown").value;
 
     if (snippetName !== "" && snippetCode !== "") {
@@ -162,7 +162,7 @@ function populateSnippetsContainer(callback) {
 
     fs.readFile(jsonFilePath, 'utf8', (err, data) => {
         if (err) {
-            console.error('Error reading JSON file:', err);
+            console.error('Eading JSON file:', err);
             return;
         }
 

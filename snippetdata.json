@@ -1,0 +1,57 @@
+{
+  "snippetgroups": "12112,kaas,kooi,doei,testgroup,lol,lol,test group222,sds,SSAKDJSALDJALSJLDASJDAKSJDLADLKA,f,jimmy 23",
+  "snippets": {
+    "snip": [
+      {
+        "name": "QWEQKEQJLEQJE",
+        "code": "WLWWEKLQEWJLEJEJLEJLEJLQJLEEQW",
+        "group": "test group222"
+      },
+      {
+        "name": "23232",
+        "code": "2222",
+        "group": "jimmy 23"
+      },
+      {
+        "name": "qwqw",
+        "code": "qwqw",
+        "group": "12112"
+      },
+      {
+        "name": "qwqw",
+        "code": "wwwwwwwwwwwww",
+        "group": "12112"
+      },
+      {
+        "name": "sdsdsd",
+        "code": "dddddd",
+        "group": "jimmy 23"
+      },
+      {
+        "name": "weweee",
+        "code": "www",
+        "group": "jimmy 23"
+      },
+      {
+        "name": "weweewewe",
+        "code": "fffffffffff",
+        "group": "12112"
+      },
+      {
+        "name": "wwwwww",
+        "code": "dfdfddf",
+        "group": "12112"
+      },
+      {
+        "name": "c++ test",
+        "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n  cout << \"Hello World!\";\n  return 0;\n}",
+        "group": "12112"
+      },
+      {
+        "name": "lol",
+        "code": "#include \nusing namespace std;\n\nint main() {\n    char c;\n    bool isLowercaseVowel, isUppercaseVowel;\n\n    cout << \"Enter an alphabet: \";\n    cin >> c;\n\n    // evaluates to 1 (true) if c is a lowercase vowel\n    isLowercaseVowel = (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u');\n\n    // evaluates to 1 (true) if c is an uppercase vowel\n    isUppercaseVowel = (c == 'A' || c == 'E' || c == 'I' || c == 'O' || c == 'U');\n\n    // show error message if c is not an alphabet\n    if (!isalpha(c))\n      printf(\"Error! Non-alphabetic character.\");\n    else if (isLowercaseVowel || isUppercaseVowel)\n        cout << c << \" is a vowel.\";\n    else\n        cout << c << \" is a consonant.\";\n\n    return 0;\n}",
+        "group": "12112"
+      }
+    ]
+  }
+}
