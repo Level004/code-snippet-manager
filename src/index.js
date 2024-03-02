@@ -12,6 +12,7 @@ const createWindow = () => {
     const mainWindow = new BrowserWindow({
         autoHideMenuBar: true,
         width: width,
+        minWidth: 1150,
         height: height,
         icon: path.join(__dirname, 'img/icon.ico'),
         webPreferences: {

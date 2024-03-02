@@ -10,6 +10,7 @@
     --light-cyan: #CAF0F8;
 }
 
+
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
         Arial, sans-serif;
@@ -21,6 +22,14 @@ body {
 
 p {
     word-wrap: break-word;
+}
+
+button, textarea {
+    outline: none !important;
+}
+
+.active-group {
+    background-color: var(--blue-green) !important;
 }
 
 #main-container {
@@ -46,6 +55,7 @@ p {
     margin-top: 20px;
     overflow: hidden;
     border: 1px solid var(--vivid-sky-blue);
+    user-select: none;
 }
 
 .side-group-name > p {
@@ -101,10 +111,9 @@ p {
 
 #newSnippetForm,
 #newSnippetGroupForm {
-    background-color: #fff;
+    background-color: #424599;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 20vw;
 }
 
@@ -120,7 +129,7 @@ p {
 }
 
 button {
-    background-color: #4caf50;
+    background-color: var(--federal-blue);
     color: #fff;
     padding: 10px;
     border: none;
@@ -128,9 +137,6 @@ button {
     cursor: pointer;
 }
 
-button:hover {
-    background-color: #45a049;
-}
 
 #content-container {
     display: flex;
@@ -144,8 +150,9 @@ button:hover {
     background-color: var(--honolulu-blue);
     width: 98%;
     margin: 1% 1% 1% 1%;
-    overflow-y: auto;
+    overflow-y: scroll;
     transition: height 0.5s ease-in-out;
+    position: relative;
 }
 
 #big-preview-container > pre {
@@ -158,10 +165,18 @@ button:hover {
     height: 100vh !important;
 }
 
-#expandButton {
-    position: fixed;
+#button-container {
+    position: sticky;
+    top: 0;
     right: 25px;
+}
+
+#expandButton {
+    position: absolute;
     top: 25px;
+    right: 25px;
+    background-color: var(--light-cyan);
+    border-radius: 50%;
 }
 
 #snippets-container {
@@ -169,11 +184,11 @@ button:hover {
     grid-template-columns: repeat(auto-fill, minmax(calc(33.33% - 20px), 1fr));
     gap: 20px;
     justify-content: space-between;
-    overflow-y: auto;
+    overflow-y: scroll;
     height: calc(100% - 25vh);
     max-height: 75vh;
     background-color: #424599;
-    padding-bottom: 45px;
+    padding-bottom: 45px; 
 }
 
 .snippet-block {
@@ -188,14 +203,22 @@ button:hover {
 .snippet-code {
     height: 75%;
     background-color: var(--marian-blue);
-    overflow: hidden;
     color: white;
+    overflow: hidden;
     position: relative;
 }
 
+.snippet-code > textarea {
+    height: 100%;
+    width: 100%;
+    background-color: var(--marian-blue);
+    color: white;
+    resize: none;
+    padding: 16px;
+    font-size: 87.5%;
+}
 
-
-.snippet-code::after {
+.snippet-code:has(pre)::after {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -210,6 +233,7 @@ button:hover {
 .snippet-code>pre {
     padding: 16px;
     color: white !important;
+    overflow: hidden;
 }
 
 .snippet-name {
@@ -217,8 +241,15 @@ button:hover {
     width: 100%;
 }
 
-.snippet-name>p {
+.snippet-name>p,
+.snippet-name>input {
     padding-left: 10px;
+}
+
+.snippet-name>input {
+    background-color: var(--vivid-sky-blue);
+    border: 1px solid var(--light-cyan);
+    outline: none;
 }
 
 .menu-button {
@@ -274,3 +305,5 @@ button:hover {
 .snippet-group{
     display: none !important;
 }
+
+

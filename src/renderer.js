@@ -177,8 +177,9 @@ function populateSnippetsContainer(callback) {
                 const snippetCode = document.createElement("div");
                 snippetCode.classList.add("snippet-code");
 
-                // Replace newline characters with <br> tags and wrap in <pre>
-                snippetCode.innerHTML = `<pre>${snippet.code.replace(/\n/g, '<br>')}</pre>`;
+                const preElement = document.createElement("pre");
+                preElement.textContent = snippet.code;
+                snippetCode.appendChild(preElement);
 
                 const snippetName = document.createElement("div");
                 snippetName.classList.add("snippet-name", "d-flex", "align-items-center");
@@ -196,7 +197,7 @@ function populateSnippetsContainer(callback) {
                             <circle cx="12" cy="19" r="2"></circle>
                         </svg>
                         <div id="contextMenu" class="context-menu">
-                            <div onclick="editOption()">Edit</div>
+                            <div onclick="editOption(event)">Edit</div>
                             <div onclick="copyOption(event)">Copy</div>
                             <div onclick="deleteOption(event)" style="color: red;">Delete</div>
                         </div>
@@ -297,21 +298,41 @@ document.addEventListener("DOMContentLoaded", function() {
 
         sideGroupNames.forEach(group => {
             group.addEventListener('click', function() {
-                const snippetBlocks = document.querySelectorAll('.snippet-block');
-                snippetBlocks.forEach(block => {
-                    block.classList.remove('d-none');
-                });
+                const isAlreadyActive = group.classList.contains('active-group');
 
-                const clickedGroup = group.textContent.trim();
+                if (isAlreadyActive) {
+                    sideGroupNames.forEach(otherGroup => {
+                        otherGroup.classList.remove('active-group');
+                    });
 
-                snippetBlocks.forEach(block => {
-                    const snippetGroup = block.querySelector('.snippet-group').textContent.trim();
-                    if (snippetGroup !== clickedGroup) {
-                        block.classList.add('d-none');
-                    }
-                });
+                    const snippetBlocks = document.querySelectorAll('.snippet-block');
+                    snippetBlocks.forEach(block => {
+                        block.classList.remove('d-none');
+                    });
+                } else {
+                    sideGroupNames.forEach(otherGroup => {
+                        otherGroup.classList.remove('active-group');
+                    });
+
+                    group.classList.add('active-group');
+
+                    const snippetBlocks = document.querySelectorAll('.snippet-block');
+                    snippetBlocks.forEach(block => {
+                        block.classList.remove('d-none');
+                    });
+
+                    const clickedGroup = group.textContent.trim();
+
+                    snippetBlocks.forEach(block => {
+                        const snippetGroup = block.querySelector('.snippet-group').textContent.trim();
+                        if (snippetGroup !== clickedGroup) {
+                            block.classList.add('d-none');
+                        }
+                    });
+                }
             });
         });
+
     }
 
 
@@ -355,16 +376,75 @@ function hideContextMenu() {
 }
 
 
-function editOption() {
-    console.log("Edit option selected");
+function editOption(event) {
+    const snippetBlock = event.target.closest('.snippet-block');
+    const snippetCode = snippetBlock.querySelector('.snippet-code pre');
+    const snippetName = snippetBlock.querySelector('.snippet-name p');
+
+    const originalName = snippetName.innerText.trim();
+    const originalClasses = snippetName.className;
+
+    const codeTextarea = document.createElement('textarea');
+    codeTextarea.value = snippetCode.innerText.trim();
+    snippetCode.replaceWith(codeTextarea);
+
+    const nameInput = document.createElement('input');
+    nameInput.value = originalName;
+    snippetName.replaceWith(nameInput);
+
+    const saveButton = document.createElement('button');
+    saveButton.textContent = 'Save';
+
+    saveButton.onclick = function() {
+        handleSaveButtonClick(saveButton, codeTextarea, nameInput, snippetBlock, originalName, originalClasses);
+    };
+
+    snippetBlock.querySelector('.snippet-name').appendChild(saveButton);
+
     hideContextMenu();
 }
+
+function handleSaveButtonClick(saveButton, codeTextarea, nameInput, snippetBlock, originalName, originalClasses) {
+    const editedCode = codeTextarea.value;
+    const editedName = nameInput.value;
+
+    const jsonFilePath = path.join('snippetdata.json');
+    const jsonData = JSON.parse(fs.readFileSync(jsonFilePath, 'utf8'));
+
+    const snippetIndex = jsonData.snippets.snip.findIndex(snippet => snippet.name === originalName);
+
+    if (snippetIndex !== -1) {
+        if (originalName !== editedName) {
+            jsonData.snippets.snip[snippetIndex].code = editedCode;
+            jsonData.snippets.snip[snippetIndex].name = editedName;
+        } else {
+            jsonData.snippets.snip[snippetIndex].code = editedCode;
+        }
+
+        fs.writeFileSync(jsonFilePath, JSON.stringify(jsonData, null, 2), 'utf-8');
+
+        codeTextarea.replaceWith(document.createElement('pre'));
+        snippetBlock.querySelector('.snippet-code pre').innerText = editedCode;
+
+        nameInput.replaceWith(document.createElement('p'));
+        const newSnippetName = snippetBlock.querySelector('.snippet-name p');
+        newSnippetName.innerText = editedName;
+
+        newSnippetName.className = originalClasses;
+
+        saveButton.remove();
+    } else {
+        console.error('Snippet not found in JSON data');
+    }
+}
+
+
 
 function copyOption(event) {
     const snippetBlock = event.target.closest('.snippet-block');
 
     if (snippetBlock) {
-        const bigPreviewHeading = document.getElementById('big-preview-container').querySelector('p');
+        const bigPreviewHeading = document.getElementById('big-preview-container').querySelector('pre');
         const textToCopy = bigPreviewHeading.textContent || bigPreviewHeading.innerText;
 
         // Use the exposed API to copy to clipboard
@@ -407,11 +487,11 @@ function deleteOption(event) {
 function toggleBigPreviewHeight() {
     const bigPreviewContainer = document.getElementById('big-preview-container');
     const expandButton = document.getElementById('expandButton');
-    
+
     bigPreviewContainer.classList.toggle('expanded');
-    
+
     const isExpanded = bigPreviewContainer.classList.contains('expanded');
-    
+
     if (isExpanded) {
         expandButton.querySelector('svg').innerHTML = `
                 <g transform="translate(0.000000,134.000000) scale(0.100000,-0.100000)" fill="#000000" stroke="none">
