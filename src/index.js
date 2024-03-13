@@ -14,12 +14,13 @@ const createWindow = () => {
         width: width,
         minWidth: 1150,
         height: height,
+        minHeight: 740,
         icon: path.join(__dirname, 'img/icon.ico'),
         webPreferences: {
             preload: path.join(__dirname, 'preload.js'),
             contextIsolation: true, 
-            nodeIntegration: true, // Enable Node.js integration
-            nodeIntegrationInWorker: true, // Enable Node.js integration in Web Workers
+            nodeIntegration: true, 
+            nodeIntegrationInWorker: true, 
         },
     });
 

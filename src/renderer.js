@@ -274,8 +274,6 @@ document.addEventListener("DOMContentLoaded", function() {
                 const snippetCodeContent = snippetCode.querySelector("pre").innerHTML;
                 const bigPreviewHeading = bigPreviewContainer.querySelector("pre");
                 bigPreviewHeading.innerHTML = snippetCodeContent;
-
-                electronAPI.clipboardWriteText(snippetCodeContent);
             });
 
             const snippetName = snippetBlock.querySelector(".snippet-name");
@@ -307,7 +305,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
                     const snippetBlocks = document.querySelectorAll('.snippet-block');
                     snippetBlocks.forEach(block => {
-                        block.classList.remove('d-none');
+                        block.classList.remove('invisible');
+                        block.classList.remove('order-1');
                     });
                 } else {
                     sideGroupNames.forEach(otherGroup => {
@@ -318,7 +317,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
                     const snippetBlocks = document.querySelectorAll('.snippet-block');
                     snippetBlocks.forEach(block => {
-                        block.classList.remove('d-none');
+                        block.classList.remove('invisible');
+                        block.classList.remove('order-1');
                     });
 
                     const clickedGroup = group.textContent.trim();
@@ -326,7 +326,8 @@ document.addEventListener("DOMContentLoaded", function() {
                     snippetBlocks.forEach(block => {
                         const snippetGroup = block.querySelector('.snippet-group').textContent.trim();
                         if (snippetGroup !== clickedGroup) {
-                            block.classList.add('d-none');
+                            block.classList.add('invisible');
+                            block.classList.add('order-1');
                         }
                     });
                 }
@@ -447,7 +448,6 @@ function copyOption(event) {
         const bigPreviewHeading = document.getElementById('big-preview-container').querySelector('pre');
         const textToCopy = bigPreviewHeading.textContent || bigPreviewHeading.innerText;
 
-        // Use the exposed API to copy to clipboard
         electronAPI.clipboardWriteText(textToCopy);
     }
 
@@ -460,14 +460,11 @@ function deleteOption(event) {
     if (snippetBlock) {
         const snippetName = snippetBlock.querySelector('.snippet-name p').textContent.trim();
 
-        // Load the JSON file
         const jsonFilePath = path.join('snippetdata.json');
         const jsonData = JSON.parse(fs.readFileSync(jsonFilePath, 'utf8'));
 
-        // Find the index of the snippet with the matching name
         const indexToDelete = jsonData.snippets.snip.findIndex(snippet => snippet.name === snippetName);
 
-        // If found, delete the snippet
         if (indexToDelete !== -1) {
             jsonData.snippets.snip.splice(indexToDelete, 1);
 

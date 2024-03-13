@@ -4,23 +4,58 @@
     "snip": [
       {
         "name": "c++ test",
-        "code": "#inclu <iostream>\nusing namespace std;\n\nint main() {\n\n  int year;\n  cout << \"Enter a year: \";\n  cin >> year;\n\n  // leap year if perfectly divisible by 400\n  if (year % 400 == 0) {\n    cout << year << \" is a leap year.\";\n  }\n  // not a leap year if divisible by 100\n  // but not divisible by 400\n  else if (year % 100 == 0) {\n    cout << year << \" is not a leap year.\";\n  }\n  // leap year if not divisible by 100\n  // but divisible by 4\n  else if (year % 4 == 0) {\n    cout << year << \" is a leap year.\";\n  }\n  // all other years are not leap years\n  else {\n    cout << year << \" is not a leap year.\";\n  }\n\n  return 0;\n}",
+        "code": "#include <iostrea677777777777m>\nusing namespace std;\n\nint main() {\n    \n    double n1, n2, n3;\n\n    cout << \"Enter three numbers: \";\n    cin >> n1 >> n2 >> n3;\n\n    // check if n1 is the largest number\n    if(n1 >= n2 && n1 >= n3)\n        cout << \"Largest number: \" << n1;\n\n    // check if n2 is the largest number\n    else if(n2 >= n1 && n2 >= n3)\n        cout << \"Largest number: \" << n2;\n    \n    // if neither n1 nor n2 are the largest, n3 is the largest\n    else \n        cout << \"Largest number: \" << n3;\n  \n    return 0;\n}",
         "group": "c++"
       },
       {
-        "name": "python test",
-        "code": "num = int(input(\"Enter a number: \"))\nif (num % 2) == 0:\n   print(\"{0} is Even\".format(num))\nelse:\n   print(\"{0} is Odd\".format(num)) sdksjdlsjdaldlasdlkas",
+        "name": "console log 5",
+        "code": "console.log('5');",
+        "group": "js"
+      },
+      {
+        "name": "223",
+        "code": "1212",
+        "group": "c++"
+      },
+      {
+        "name": "wew",
+        "code": "wewwewwe",
+        "group": "c++"
+      },
+      {
+        "name": "ww",
+        "code": "www",
+        "group": "c++"
+      },
+      {
+        "name": "lolwew",
+        "code": "wewewewewew",
         "group": "python"
       },
       {
-        "name": "loll",
-        "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    \n    double n1, n2, n3;\n\n    cout << \"Enter three numbers: \";\n    cin >> n1 >> n2 >> n3;\n\n    // check if n1 is the largest number\n    if(n1 >= n2 && n1 >= n3)\n        cout << \"Largest number: \" << n1;\n\n    // check if n2 is the largest number\n    else if(n2 >= n1 && n2 >= n3)\n        cout << \"Largest number: \" << n2;\n    \n    // if neither n1 nor n2 are the largest, n3 is the largest\n    else \n        cout << \"Largest number: \" << n3;\n  \n    return 0;\n}",
+        "name": "wewe",
+        "code": "eeeeeeee",
         "group": "c++"
       },
       {
-        "name": "html",
-        "code": "<p>dit is wat html</p>",
-        "group": "js"
+        "name": "sdsds",
+        "code": "sdsdd",
+        "group": "c++"
+      },
+      {
+        "name": "sdsdsds",
+        "code": "sdsddsdsssssss",
+        "group": "c++"
+      },
+      {
+        "name": "1312323123",
+        "code": "sdsdsdsddsdsdsdsdsds",
+        "group": "python"
+      },
+      {
+        "name": "h",
+        "code": "k",
+        "group": "c++"
       }
     ]
   }

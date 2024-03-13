@@ -10,10 +10,9 @@
     --light-cyan: #CAF0F8;
 }
 
-
+/* General Styles */
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
-        Arial, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     margin: auto;
     max-width: 38rem;
     background-color: #424599 !important;
@@ -28,15 +27,18 @@ button, textarea {
     outline: none !important;
 }
 
+/* Active Group Styles */
 .active-group {
     background-color: var(--blue-green) !important;
 }
 
+/* Main Container Styles */
 #main-container {
     display: flex;
     width: 100vw;
 }
 
+/* Sidebar Styles */
 #side-bar {
     width: 20vw;
     height: 100vh;
@@ -47,7 +49,6 @@ button, textarea {
     justify-content: flex-start;
     align-items: center;
 }
-
 
 .side-group-name {
     background-color: rgba(255, 255, 255, 0.5);
@@ -137,7 +138,7 @@ button {
     cursor: pointer;
 }
 
-
+/* Content Container Styles */
 #content-container {
     display: flex;
     flex: 1;
@@ -162,7 +163,12 @@ button {
 }
 
 .expanded {
-    height: 100vh !important;
+    height: 71vh !important;
+    max-height: 71vh;
+}
+
+[class="snippet-block rounded invisible order-1"] {
+    position: absolute;;
 }
 
 #button-container {
@@ -186,11 +192,16 @@ button {
     justify-content: space-between;
     overflow-y: scroll;
     height: calc(100% - 25vh);
-    max-height: 75vh;
+    max-height: 72vh;
     background-color: #424599;
-    padding-bottom: 45px; 
+    transition: max-height 0.5s ease-in-out;
 }
 
+.expanded + #snippets-container {
+    max-height: 26vh;
+}
+
+/* Snippet Block Styles */
 .snippet-block {
     height: 250px;
     background-color: var(--vivid-sky-blue);
@@ -199,7 +210,7 @@ button {
     margin: 5px 5px 5px 10px;
 }
 
-
+/* Snippet Code Styles */
 .snippet-code {
     height: 75%;
     background-color: var(--marian-blue);
@@ -236,6 +247,7 @@ button {
     overflow: hidden;
 }
 
+/* Snippet Name Styles */
 .snippet-name {
     height: 25%;
     width: 100%;
@@ -252,10 +264,10 @@ button {
     outline: none;
 }
 
+/* Context Menu Styles */
 .menu-button {
     cursor: pointer;
 }
-
 
 .context-menu {
     display: none;
@@ -285,7 +297,7 @@ button {
     background-color: #f0f0f0;
 }
 
-
+/* Scrollbar Styles */
 ::-webkit-scrollbar {
     background-color: transparent !important;
     width: 9px !important;
@@ -301,9 +313,9 @@ button {
     border: 1px solid var(--federal-blue);
 }
 
+/* Hide Unnecessary Elements */
 ::-webkit-scrollbar-button,
 .snippet-group{
     display: none !important;
 }
-
 
