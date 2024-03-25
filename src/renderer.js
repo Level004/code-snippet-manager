@@ -402,6 +402,28 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
     );
+
+    if (fs.existsSync('snippetdata.json')) {
+        console.log('snippetdata.json already exists. Exiting.');
+        return;
+    }
+
+    // JSON data to write to the file
+    const jsonData = {
+        "snippetgroups": "",
+        "snippets": {
+            "snip": []
+        }
+    };
+
+    // Write JSON data to the file
+    fs.writeFile('snippetdata.json', JSON.stringify(jsonData), (err) => {
+        if (err) {
+            console.error('Error writing snippetdata.json:', err);
+            return;
+        }
+        console.log('snippetdata.json created successfully.');
+    });
 });
 
 function showContextMenu(event) {
