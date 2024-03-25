@@ -1,62 +1,6 @@
 {
-  "snippetgroups": "c++,python,js",
+  "snippetgroups": "",
   "snippets": {
-    "snip": [
-      {
-        "name": "c++ test",
-        "code": "#include <iostrea677777777777m>\nusing namespace std;\n\nint main() {\n    \n    double n1, n2, n3;\n\n    cout << \"Enter three numbers: \";\n    cin >> n1 >> n2 >> n3;\n\n    // check if n1 is the largest number\n    if(n1 >= n2 && n1 >= n3)\n        cout << \"Largest number: \" << n1;\n\n    // check if n2 is the largest number\n    else if(n2 >= n1 && n2 >= n3)\n        cout << \"Largest number: \" << n2;\n    \n    // if neither n1 nor n2 are the largest, n3 is the largest\n    else \n        cout << \"Largest number: \" << n3;\n  \n    return 0;\n}",
-        "group": "c++"
-      },
-      {
-        "name": "console log 5",
-        "code": "console.log('5');",
-        "group": "js"
-      },
-      {
-        "name": "223",
-        "code": "1212",
-        "group": "c++"
-      },
-      {
-        "name": "wew",
-        "code": "wewwewwe",
-        "group": "c++"
-      },
-      {
-        "name": "ww",
-        "code": "www",
-        "group": "c++"
-      },
-      {
-        "name": "lolwew",
-        "code": "wewewewewew",
-        "group": "python"
-      },
-      {
-        "name": "wewe",
-        "code": "eeeeeeee",
-        "group": "c++"
-      },
-      {
-        "name": "sdsds",
-        "code": "sdsdd",
-        "group": "c++"
-      },
-      {
-        "name": "sdsdsds",
-        "code": "sdsddsdsssssss",
-        "group": "c++"
-      },
-      {
-        "name": "1312323123",
-        "code": "sdsdsdsddsdsdsdsdsds",
-        "group": "python"
-      },
-      {
-        "name": "h",
-        "code": "k",
-        "group": "c++"
-      }
-    ]
+    "snip": []
   }
 }

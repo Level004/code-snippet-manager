@@ -106,6 +106,70 @@ function createNewSnippetForm() {
     document.getElementById("main-container").appendChild(newSnippetForm);
 }
 
+function createDeleteSnippetGroupForm() {
+    hideSnipContextMenu();
+
+    const deleteSnippetGroupForm = document.createElement("div");
+    deleteSnippetGroupForm.id = "deleteSnippetGroupForm";
+    deleteSnippetGroupForm.classList.add("context-menu-form");
+
+    const select = document.createElement("select");
+    select.id = "snippetGroupSelect";
+
+    const filePath = path.join('snippetdata.json');
+    let data = fs.readFileSync(filePath, 'utf-8');
+    let jsonData = JSON.parse(data);
+
+    if (jsonData.snippetgroups) {
+        const groupsArray = jsonData.snippetgroups.split(",");
+        groupsArray.forEach(group => {
+            const option = document.createElement("option");
+            option.value = group;
+            option.textContent = group;
+            select.appendChild(option);
+        });
+    }
+
+    const button = document.createElement("button");
+    button.textContent = "Delete";
+    button.onclick = function() {
+        const selectedGroup = select.value;
+        if (selectedGroup) {
+            deleteSnippetGroup(selectedGroup);
+            deleteSnippetGroupForm.parentNode.removeChild(deleteSnippetGroupForm);
+            location.reload();
+        } else {
+            alert("Please select a snippet group to delete.");
+        }
+    };
+
+    deleteSnippetGroupForm.appendChild(select);
+    deleteSnippetGroupForm.appendChild(button);
+
+    document.getElementById("main-container").appendChild(deleteSnippetGroupForm);
+}
+
+function deleteSnippetGroup(groupName) {
+    const filePath = path.join('snippetdata.json');
+    let data = fs.readFileSync(filePath, 'utf-8');
+    let jsonData = JSON.parse(data);
+
+    if (jsonData.snippetgroups) {
+        const groupsArray = jsonData.snippetgroups.split(",");
+        const index = groupsArray.indexOf(groupName);
+        if (index !== -1) {
+            groupsArray.splice(index, 1);
+            jsonData.snippetgroups = groupsArray.join(",");
+        }
+    }
+
+    if (jsonData.snippets && jsonData.snippets.snip) {
+        jsonData.snippets.snip = jsonData.snippets.snip.filter(snippet => snippet.group !== groupName);
+    }
+
+    fs.writeFileSync(filePath, JSON.stringify(jsonData, null, 2));
+}
+
 
 function addSnippetGroup() {
     const snippetGroupName = document.getElementById("snippetGroupName").value.trim();
